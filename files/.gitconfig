@@ -8,8 +8,6 @@
 # Note: Even though this will show up twice in `git config -l` - it will still be overridden based on the order of the includeIf lines below
 [includeIf "gitdir/i:~/"]             # Personal
   path = ~/.gitconfig-oss.inc         # Personal
-[includeIf "gitdir/i:~/dev/jd/"]      # Personal
-  path = ~/.gitconfig-jd.inc          # Personal
 [includeIf "gitdir/i:~/dev/tw/"]      # Personal
   path = ~/.gitconfig-tw.inc          # Personal
 [alias]
@@ -297,3 +295,8 @@
   fsckobjects = false
 [user]
   useConfigOnly = true
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
