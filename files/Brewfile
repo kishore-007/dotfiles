@@ -45,7 +45,6 @@ brew 'jq'
 # brew 'kubernetes-cli', link: true   # Note: Had to do this: rm /usr/local/bin/kubectl && brew link --overwrite kubernetes-cli
 # brew 'kubernetes-helm'
 brew 'less'
-# brew 'libressl', link: true
 # brew 'localstack'
 # brew 'make'
 brew 'mise'
@@ -56,15 +55,17 @@ brew 'powerlevel10k'
 brew 'prettyping'
 # brew 'reattach-to-user-namespace' # Needed if using tmux (to be able to access the macos clipboard from within tmux)
 brew 'ripgrep'
-brew 'shellcheck'
-# brew 'speedtest-cli'
-brew 'syncthing'
+# brew 's3cmd'
+# brew 'shellcheck'
+# brew 'sonar-scanner' if java_present
+# brew 'sonarqube', restart_service: :changed if java_present
+# brew 'syncthing'
+# brew 'terraform'
 brew 'tldr'
 # brew 'tmux'
 brew 'vim'
 brew 'watch'
 brew 'wget'
-brew 'wifi-password'
 brew 'zsh'
 
 # ----------------------------------------------------------------------------------------------------------
@@ -74,16 +75,17 @@ mas 'iBar-Menubar icon control tool', id: 6443843900
 
 # ----------------------------------------------------------------------------------------------------------
 cask 'aldente'
-# cask 'apparency'
 cask 'appcleaner'
-cask 'arc'
+# cask 'arc'
 cask 'brave-browser@nightly'
 cask 'clocker'
-cask 'cloudflare-warp'
-# cask 'dbeaver-community'
+cask 'command-x'
+cask 'dbeaver-community'
+# cask 'dropbox'
 # cask 'dupeguru'
 cask 'firefox@nightly' #, greedy: true
 cask 'font-meslo-lg-nerd-font'
+cask 'google-chrome'
 # cask 'git-credential-manager'  # https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git
 # cask 'intellij-idea-ce'
 cask 'iterm2'
@@ -91,26 +93,29 @@ cask 'itsycal'
 # cask 'kdiff3'
 cask 'keepassxc@beta'
 cask 'keepingyouawake'
-cask 'keybase'
+# cask 'keybase'
 # cask 'keycastr'
-cask 'libreoffice'
+# cask 'libreoffice'
 # cask 'licecap'
 # cask 'lulu'
-cask 'monolingual'
+cask 'microsoft-teams'
+# cask 'monolingual'
 # cask 'netspot'
 # cask 'ngrok'
 cask 'notunes'
 cask 'ollama', restart_service: :changed
 # cask 'onyx'  # Commented out since I'm on the beta version of macos
-cask 'protonvpn'
+# cask 'protonvpn'
 cask 'rancher'
 cask 'raycast'
 cask 'silicon' if is_arm
 cask 'stats'
 # cask 'tempbox'
 cask 'the-unarchiver'
-cask 'thunderbird@daily'  # TODO: Commented out since I haven't opened TBird for the past 6 months - maybe its time to let go
-cask 'vscodium@insiders'   # TODO: Doesn't handle 'Remote Containers' and GH-based auto-syncing when comparing to VSCode
+# cask 'thunderbird@daily'  # TODO: Commented out since I haven't opened TBird for the past 6 months - maybe its time to let go
+cask 'visual-studio-code'
+# cask 'vscodium@insiders'   # TODO: Doesn't handle 'Remote Containers' and GH-based auto-syncing when comparing to VSCode
+cask 'whatsapp'
 cask 'zoom'
 
 # VSCode extensions
