@@ -46,41 +46,31 @@ brew 'eza'
 brew 'git-extras'
 brew 'git-gui'
 brew 'git-tools'
-brew 'jq'
-brew 'moreutils'
-brew 'ncdu'
 brew 'prettyping'
 brew 'ripgrep'
-brew 'syncthing'
 brew 'tldr'
 
 cask 'aldente'
 cask 'appcleaner'
-cask 'arc'
 cask 'brave-browser'
 cask 'clocker'
+cask 'dbeaver-community'
 cask 'firefox@nightly' #, greedy: true
 cask 'font-meslo-lg-nerd-font'
+cask 'google-chrome'
 cask 'iterm2'
 cask 'itsycal'
-cask 'jordanbaird-ice'
+# cask 'jordanbaird-ice'
 cask 'keepassxc@beta'
 cask 'keepingyouawake'
 cask 'keybase'
 cask 'keycastr'
-cask 'libreoffice'
-cask 'monolingual'
-cask 'notunes'
-cask 'ollama', restart_service: :changed
-cask 'onyx'
-cask 'protonvpn'
+cask 'microsoft-teams'
 cask 'rancher'
 cask 'raycast'
-cask 'silicon' if is_arm
 cask 'stats'
-cask 'the-unarchiver'
-cask 'vscodium@insiders'   # TODO: Doesn't handle 'Remote Containers' and GH-based auto-syncing when compared to VSCode
-cask 'zen-browser@twilight'
+cask 'visual-studio-code'
+cask 'whatsapp'
 cask 'zoom'
 
 # VSCode extensions
@@ -118,7 +108,6 @@ if is_vscode_installed
   vscode 'rebornix.ruby'
   vscode 'redhat.vscode-yaml'
   vscode 'richie5um2.vscode-sort-json'
-  vscode 'shan.code-settings-sync'
   vscode 'tchayen.markdown-links'
   vscode 'tyriar.sort-lines'
   vscode 'vscode-icons-team.vscode-icons'
@@ -170,7 +159,6 @@ end
 
 # ---- casks
 # cask 'cloudflare-warp'
-# cask 'dbeaver-community'
 # cask 'git-credential-manager'   # https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git
 # cask 'intellij-idea-ce'
 # cask 'kdiff3'
