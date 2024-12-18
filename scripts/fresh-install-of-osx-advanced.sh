@@ -19,36 +19,44 @@ if is_non_zero_string "${KEYBASE_USERNAME}"; then
   # Clone the home repo #
   #######################
   section_header 'Cloning home repo'
-  if is_non_zero_string "${KEYBASE_HOME_REPO_NAME}" && ! is_git_repo "${HOME}"; then
-    clone_repo_into "keybase://private/${KEYBASE_USERNAME}/${KEYBASE_HOME_REPO_NAME}" "${HOME}/tmp"
-    mv -fv "${HOME}/tmp/.git" "${HOME}/"
-    rm -rf "${HOME}/tmp"
-    success "Successfully cloned the home repo into ${HOME}"
+  if is_non_zero_string "${KEYBASE_HOME_REPO_NAME}"; then
+    if ! is_git_repo "${HOME}"; then
+      clone_repo_into "keybase://private/${KEYBASE_USERNAME}/${KEYBASE_HOME_REPO_NAME}" "${HOME}/tmp"
+      mv -fv "${HOME}/tmp/.git" "${HOME}/"
+      rm -rf "${HOME}/tmp"
+      success "Successfully cloned the home repo into ${HOME}"
 
-    # Checkout files (these should not have any modifications/conflicts with what is in the remote repo)
-    git -C "${HOME}" checkout ".[a-zA-Z]*" personal
+      # Checkout files (these should not have any modifications/conflicts with what is in the remote repo)
+      git -C "${HOME}" checkout ".[a-zA-Z]*" personal
 
-    # Reset ssh keys' permissions so that git doesn't complain when using them
-    set_ssh_folder_permissions
+      # Reset ssh keys' permissions so that git doesn't complain when using them
+      set_ssh_folder_permissions
 
-    # Fix /etc/hosts file to block facebook
-    is_file "${PERSONAL_CONFIGS_DIR}/etc.hosts" && sudo cp "${PERSONAL_CONFIGS_DIR}/etc.hosts" /etc/hosts
+      # Fix /etc/hosts file to block facebook
+      is_file "${PERSONAL_CONFIGS_DIR}/etc.hosts" && sudo cp "${PERSONAL_CONFIGS_DIR}/etc.hosts" /etc/hosts
+    else
+      warn "skipping cloning of home repo since a git repo is already present in '${HOME}'"
+    fi
   else
-    warn "skipping cloning of home repo since the 'KEYBASE_HOME_REPO_NAME' env var hasn't been set or a git repo is already present in '${HOME}'"
+    warn "skipping cloning of home repo since the 'KEYBASE_HOME_REPO_NAME' env var hasn't been set"
   fi
 
   ###########################
   # Clone the profiles repo #
   ###########################
   section_header 'Cloning profiles repo'
-  if is_non_zero_string "${KEYBASE_PROFILES_REPO_NAME}" && ! is_git_repo "${PERSONAL_PROFILES_DIR}"; then
-    clone_repo_into "keybase://private/${KEYBASE_USERNAME}/${KEYBASE_PROFILES_REPO_NAME}" "${PERSONAL_PROFILES_DIR}"
-    success "Successfully cloned the profiles repo into ${PERSONAL_PROFILES_DIR}"
+  if is_non_zero_string "${KEYBASE_PROFILES_REPO_NAME}"; then
+    if ! is_git_repo "${PERSONAL_PROFILES_DIR}"; then
+      clone_repo_into "keybase://private/${KEYBASE_USERNAME}/${KEYBASE_PROFILES_REPO_NAME}" "${PERSONAL_PROFILES_DIR}"
+      success "Successfully cloned the profiles repo into ${PERSONAL_PROFILES_DIR}"
 
-    # since the above lines will delete the .envrc & .gitignore that were earlier copied into the profiles folder, we will re-run the install script
-    eval "${DOTFILES_DIR}/scripts/install-dotfiles.rb"
+      # since the above lines will delete the .envrc & .gitignore that were earlier copied into the profiles folder, we will re-run the install script
+      eval "${DOTFILES_DIR}/scripts/install-dotfiles.rb"
+    else
+      warn "skipping cloning of profiles repo since a git repo is already present in '${PERSONAL_PROFILES_DIR}'"
+    fi
   else
-    warn "skipping cloning of profiles repo since the 'KEYBASE_PROFILES_REPO_NAME' env var hasn't been set or a git repo is already present in '${PERSONAL_PROFILES_DIR}'"
+    warn "skipping cloning of profiles repo since the 'KEYBASE_PROFILES_REPO_NAME' env var hasn't been set"
   fi
 else
   warn "skipping cloning of any keybase repo since 'KEYBASE_USERNAME' has not been set"
